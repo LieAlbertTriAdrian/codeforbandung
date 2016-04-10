@@ -1,0 +1,67 @@
+body {
+  background: #fff;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+nav {
+  padding: 0 20px;
+}
+
+a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+.imagediv {
+  z-index: 1;
+  position: relative;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/project.jpg");
+  background-size: 100%;
+  width: 100%;
+  height: 350px;
+  min-height: 200px;
+  text-align: center;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.titleimage {
+  color: white;
+}
+
+.imagedivinside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height:10em;
+  width:30em;
+  margin-top:-5em;
+  margin-left:-15em;
+}
+
+.button {
+  border-radius: 10px;
+  padding: 7px 25px;
+  border-style: none;
+  background-color: #333333;
+  color: white;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #4A4A4A;
+  color: white;
+  text-decoration: none;
+}
+
+.tiles {
+  max-width: 930px;
+  margin: auto;
+}
