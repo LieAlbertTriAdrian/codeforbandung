@@ -2,23 +2,23 @@ var RegisterForm = React.createClass({
   getInitialState: function() {
       return { name: '',position: '', handphone: '', email: '' };
   },
-  handleName: function(e) {
+  handleNameChange: function(e) {
       this.setState({ name: e.target.value });
   },
-  handlePosition: function(e) {
+  handlePositionChange: function(e) {
       this.setState({ position: e.target.value });
   },
-  handleHandphone: function(e) {
+  handleHandphoneChange: function(e) {
       this.setState({ handphone: e.target.value });
   },
-  handleEmail: function(e) {
+  handleEmailChange: function(e) {
       this.setState({ email: e.target.value });
   },
   handleSubmit: function(e) {
       e.preventDefault();
 
-      var name = this.state.title.trim();
-      var position = this.state.description.trim();
+      var name = this.state.name.trim();
+      var position = this.state.position.trim();
       var handphone = this.state.handphone.trim();
       var email = this.state.email.trim();
 
@@ -56,6 +56,6 @@ var RegisterForm = React.createClass({
 });
 
 ReactDOM.render(
-  <RegisterForm url="/api/users" />,
+  <RegisterForm url="/auth/signup" />,
   document.getElementById('content')
 );

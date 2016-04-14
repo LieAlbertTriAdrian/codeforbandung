@@ -1,10 +1,6 @@
-var express   =    require("express");
-var mysql     =    require('mysql');
-var Const     =    require('./Const');
 var Response     =    require('./Response');
 var conn = require('./Connection');
 var Const = require('./Const');
-var Promise = require('bluebird');
 
 var controller = {};
 
