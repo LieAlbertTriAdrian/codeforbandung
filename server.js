@@ -20,6 +20,7 @@ var project = require('./routes/project.js');
 var timeline = require('./routes/timeline.js');
 var user = require('./routes/user.js');
 var projectMember = require('./routes/project_member.js');
+var index = require('./routes/index.js');
 
 var PROJECTS_FILE = path.join(__dirname, 'projects.json');
 
@@ -41,22 +42,23 @@ app.use(function(req, res, next) {
 });
 
 app.set('json spaces', 4);
-app.use('/api/project', project);
-app.use('/api/timeline', timeline);
-app.use('/api/user', user);
-app.use('/api/projectMember', projectMember);
+app.use('/', index);
+app.use('/api/projects', project);
+app.use('/api/timelines', timeline);
+app.use('/api/users', user);
+app.use('/api/projectMembers', projectMember);
 
-// app.use('/api/projects', function(err, results));
+app.get('/api/projects', function(req, res) {
 
-// app.get('/api/projects', function(req, res) {
-//   fs.readFile(PROJECTS_FILE, function(err, data) {
-//     if (err) {
-//       console.error(err);
-//       process.exit(1);
-//     }
-//     res.json(JSON.parse(data));
-//   });
-// });
+  fs.readFile(PROJECTS_FILE, function(err, data) {
+	console.log("Go Into api projects");
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(JSON.parse(data));
+  });
+});
 
 // app.post('/api/projects', function(req, res) {
 //   fs.readFile(PROJECTS_FILE, function(err, data) {
@@ -83,7 +85,6 @@ app.use('/api/projectMember', projectMember);
 //     });
 //   });
 // });
-
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');

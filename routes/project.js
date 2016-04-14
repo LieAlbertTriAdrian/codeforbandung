@@ -4,6 +4,7 @@ var Promise = require('bluebird');
 var Project = Promise.promisifyAll(require('../models/Project.js'));
 
 router.get('/', function (req, res) {
+	console.log("Read Api Projects");
 	Project.read(function (response) {
 		console.log("After Query");
 		res.status(response.status).json(response);
