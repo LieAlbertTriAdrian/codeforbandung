@@ -15,7 +15,7 @@ controller.read = function (callback) {
         callback(Response(err.errno, err.message));
       }
 
-      conn.query('SELECT * FROM timelines', function (err, rows) {
+      conn.query('SELECT * FROM projectmembers', function (err, rows) {
           conn.release();
           if (err)
               callback(Response(err.errno, err.message));
@@ -33,12 +33,12 @@ controller.create = function (data, callback) {
         callback(Response(err.errno, err.message));
       }
 
-      conn.query('INSERT INTO timelines(activity, start_date, end_date, project_id) VALUES(?,?,?,?)', data, function (err, rows) {
+      conn.query('INSERT INTO projectmembers(user_id, project_id, project_position, job_description) VALUES(?,?,?,?)', data, function (err, rows) {
           conn.release();
           if (err)
               callback(Response(err.errno, err.message));
           else
-              callback(Response(Const.STATUS_OK,'Timeline is created successfully',rows));
+              callback(Response(Const.STATUS_OK,'Project Member is created successfully',rows));
       });
   });
 };
@@ -50,12 +50,12 @@ controller.update = function (data, callback) {
         callback(Response(err.errno, err.message));
       }
 
-      conn.query('UPDATE timelines SET activity = ?, start_date = ?, end_date = ? WHERE id = ?', data, function (err, rows) {
+      conn.query('UPDATE projectmembers SET project_position = ?, job_description = ? WHERE id = ?', data, function (err, rows) {
           conn.release();
           if (err)
               callback(Response(err.errno, err.message));
           else
-              callback(Response(Const.STATUS_OK,'Timeline is updated successfully',rows));
+              callback(Response(Const.STATUS_OK,'Project Member is updated successfully',rows));
       });
   });
 };
@@ -67,12 +67,12 @@ controller.delete = function (id, callback) {
         callback(Response(err.errno, err.message));
       }
 
-      conn.query('DELETE FROM timelines WHERE id = ?', id, function (err, rows) {
+      conn.query('DELETE FROM projectmembers WHERE id = ?', id, function (err, rows) {
           conn.release();
           if (err)
               callback(Response(err.errno, err.message));
           else
-              callback(Response(Const.STATUS_OK,'Timeline is deleted successfully',rows));
+              callback(Response(Const.STATUS_OK,'Project Member is deleted successfully',rows));
       });
   });
 };
