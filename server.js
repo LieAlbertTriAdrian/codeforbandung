@@ -16,6 +16,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+var project = require('./routes/project.js'); 
+
 var PROJECTS_FILE = path.join(__dirname, 'projects.json');
 
 app.set('port', (process.env.PORT || 3000));
@@ -35,41 +37,45 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/api/projects', function(req, res) {
-  fs.readFile(PROJECTS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    res.json(JSON.parse(data));
-  });
-});
+app.set('json spaces', 2);
+app.use('/api/project', project)
+// app.use('/api/projects', function(err, results));
 
-app.post('/api/projects', function(req, res) {
-  fs.readFile(PROJECTS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    var projects = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
-    var newProject = {
-      id: Date.now(),
-      title: req.body.title,
-      description: req.body.description,
-    };
-    projects.push(newProject);
-    fs.writeFile(PROJECTS_FILE, JSON.stringify(projects, null, 4), function(err) {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-      res.json(projects);
-    });
-  });
-});
+// app.get('/api/projects', function(req, res) {
+//   fs.readFile(PROJECTS_FILE, function(err, data) {
+//     if (err) {
+//       console.error(err);
+//       process.exit(1);
+//     }
+//     res.json(JSON.parse(data));
+//   });
+// });
+
+// app.post('/api/projects', function(req, res) {
+//   fs.readFile(PROJECTS_FILE, function(err, data) {
+//     if (err) {
+//       console.error(err);
+//       process.exit(1);
+//     }
+//     var projects = JSON.parse(data);
+//     // NOTE: In a real implementation, we would likely rely on a database or
+//     // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
+//     // treat Date.now() as unique-enough for our purposes.
+//     var newProject = {
+//       id: Date.now(),
+//       title: req.body.title,
+//       description: req.body.description,
+//     };
+//     projects.push(newProject);
+//     fs.writeFile(PROJECTS_FILE, JSON.stringify(projects, null, 4), function(err) {
+//       if (err) {
+//         console.error(err);
+//         process.exit(1);
+//       }
+//       res.json(projects);
+//     });
+//   });
+// });
 
 
 app.listen(app.get('port'), function() {
