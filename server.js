@@ -18,6 +18,7 @@ var app = express();
 
 var project = require('./routes/project.js');
 var timeline = require('./routes/timeline.js');
+var user = require('./routes/user.js');
 
 var PROJECTS_FILE = path.join(__dirname, 'projects.json');
 
@@ -41,6 +42,7 @@ app.use(function(req, res, next) {
 app.set('json spaces', 4);
 app.use('/api/project', project);
 app.use('/api/timeline', timeline);
+app.use('/api/user', user);
 // app.use('/api/projects', function(err, results));
 
 // app.get('/api/projects', function(req, res) {
