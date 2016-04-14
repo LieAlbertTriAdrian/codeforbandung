@@ -16,7 +16,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var project = require('./routes/project.js'); 
+var project = require('./routes/project.js');
+var timeline = require('./routes/timeline.js');
 
 var PROJECTS_FILE = path.join(__dirname, 'projects.json');
 
@@ -37,8 +38,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.set('json spaces', 2);
-app.use('/api/project', project)
+app.set('json spaces', 4);
+app.use('/api/project', project);
+app.use('/api/timeline', timeline);
 // app.use('/api/projects', function(err, results));
 
 // app.get('/api/projects', function(req, res) {
