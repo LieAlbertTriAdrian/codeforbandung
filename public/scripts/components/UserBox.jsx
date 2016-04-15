@@ -1,10 +1,12 @@
+
+
 var pictureStyle = {
   border: '1px solid gray',
   background: '#999999',
   width: '15%',
-  'min-width': '150px',
+  'minWidth': '150px',
   margin: '15px 5px',
-  'vertical-align': 'top',
+  'verticalAlign': 'top',
   height: '200px',
   display: 'inline-block',
 };
@@ -12,7 +14,7 @@ var pictureStyle = {
 var userStyle = {
   width: '80%',
   display: 'inline-block',
-  'vertical-align': 'top',
+  'verticalAlign': 'top',
   padding: '20px'
 };
 
@@ -23,20 +25,22 @@ var inline = {
 var alignRight = {
   width: '85%',
   display: 'inline-block',
-  'text-align': 'right'
+  'textAlign': 'right'
 };
 
 var borderedForm = {
   border: '1px solid grey',
-  'border-radius': '10px',
+  'borderRadius': '10px',
   padding: '5px 10px'
 };
 
 var UserBox = React.createClass({
-    /*contextTypes: {
+    contextTypes: {
         'router': React.PropTypes.func
-    },*/
+    },
     render () {
+        console.log("Hello");
+        console.log(this.context);
         /*const router = this.context.router;
         const id = router.getCurrentParams().id;*/
         return (
