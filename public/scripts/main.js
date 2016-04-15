@@ -2,7 +2,8 @@ var tile = {
   border: '1px solid gray',
   width: '300px',
   margin: '5px',
-  display: 'inline-block'
+  display: 'inline-block',
+  cursor: 'pointer'
 };
 var tileheader = {
   background: '#999999',
@@ -34,6 +35,25 @@ var ProjectTile = React.createClass({
   }
 });
 
+var CategoryForm = React.createClass({
+  getInitialState: function() {
+      return { category: '' };
+  },
+  handleCategoryChange: function(e) {
+      this.setState({ category: e.target.value });
+  },
+  render: function() {
+      return (
+        <form className="categoryForm" style={{'text-align': 'center'}}>
+          <select value={ this.state.category } onChange={ this.handleCategoryChange }>
+            <option value="opendata">Open data</option>
+            <option value="civictech">Civic tech</option>
+          </select><br /><br />
+        </form>
+      );
+  }
+});
+
 var ProjectBox = React.createClass({
     loadProjectsFromServer: function() {
         console.log("loadProjectsFromServer");
@@ -58,6 +78,7 @@ var ProjectBox = React.createClass({
     render: function() {
         return (
           <div className="projectBox">
+              <CategoryForm />
               <ProjectList data={ this.state.data } />
           </div>
         );

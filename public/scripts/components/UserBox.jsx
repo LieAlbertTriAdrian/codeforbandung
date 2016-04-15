@@ -1,31 +1,51 @@
-var tile = {
+var pictureStyle = {
   border: '1px solid gray',
-  width: '300px',
-  margin: '5px',
+  background: '#999999',
+  width: '15%',
+  'min-width': '150px',
+  margin: '15px 5px',
+  'vertical-align': 'top',
+  height: '200px',
+  display: 'inline-block',
+};
+
+var userStyle = {
+  width: '80%',
+  display: 'inline-block',
+  'vertical-align': 'top',
+  padding: '20px'
+};
+
+var inline = {
   display: 'inline-block'
 };
 
-var tileheader = {
-  background: '#999999',
-  width: '100%',
-  height: '150px'
+var alignRight = {
+  width: '85%',
+  display: 'inline-block',
+  'text-align': 'right'
 };
-var tilebody = {
-  padding: '0px 10px',
+
+var borderedForm = {
+  border: '1px solid grey',
+  'border-radius': '10px',
+  padding: '5px 10px'
 };
 
 var UserBox = React.createClass({
-    contextTypes: {
+    /*contextTypes: {
         'router': React.PropTypes.func
-    },
+    },*/
     render () {
-        const router = this.context.router;
-        const id = router.getCurrentParams().id;
+        /*const router = this.context.router;
+        const id = router.getCurrentParams().id;*/
         return (
             <div className="userBox" >
                   <UserPicture />
-                  <UserTitle />
-                  <UserDetail />
+                  <div style={userStyle}>
+                    <UserTitle />
+                    <UserDetail />
+                  </div>
                 {/*<UserTitle></UserTitle>
                 <UserDescription></UserDescription>
                 <UserDetail></UserDetail>*/}
@@ -37,8 +57,7 @@ var UserBox = React.createClass({
 var UserPicture = React.createClass({
     render () {
         return (
-            <div className="userPicture" style={ tile } >
-                <div style={ tileheader } ></div>
+            <div className="userPicture" style={ pictureStyle } >
             </div>
         );
     }
@@ -48,10 +67,12 @@ var UserTitle = React.createClass({
     render () {
         return (
             <span className="userTitle">
-                <h1>User</h1>
-                <h1>Positions</h1>
-                <button type="button">Prev</button>
-                <button type="button">Next</button>
+                <h2>User</h2>
+                <h3 style={inline}>Positions</h3>
+                <div style={alignRight}>
+                  <button type="button">Prev</button>
+                  <button type="button">Next</button>
+                </div>
                 <hr></hr>
             </span>
         );
@@ -62,7 +83,8 @@ var UserDetail = React.createClass({
     render () {
         return (
             <div className="userDetail">
-                <p>Description</p>
+                <p>The description of users</p>
+                <br />
                 <UserDetailForm />
             </div>
         )
@@ -72,9 +94,11 @@ var UserDetail = React.createClass({
 var UserDetailForm = React.createClass({
     render () {
         return (
-            <form className="userDetailForm">
+            <form className="userDetailForm" style={borderedForm}>
+              <h3>User Detail</h3>
+              <hr></hr>
               <input type="text" placeholder="handphone" /><br/>
-              <input type="text" placeholder="email" /> <br/>
+              <input type="text" placeholder="email" />
             </form>
         );
     }
@@ -163,74 +187,6 @@ ReactDOM.render(
   <ProjectForm url="/api/projects" />,
   document.getElementById('content')
 );
-
-
-
-var ProjectTile = React.createClass({
-  rawMarkup: function() {
-      var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
-      return { __html: rawMarkup };
-  },
-  render: function() {
-      return (
-        <div className="project" style={tile}>
-          <div style={tileheader}></div>
-        </div>
-      );
-  }
-});
-
-var ProjectBox = React.createClass({
-    loadProjectsFromServer: function() {
-        console.log("loadProjectsFromServer");
-        $.ajax({
-          url: this.props.url,
-          dataType: 'json',
-          success: function (response) {
-              this.setState({ data: response.data });
-          }.bind(this),
-          error: function (xhr, status, err) {
-              console.error(this.props.url, status, err.toString());
-          }.bind(this)
-        });
-    },
-    getInitialState: function() {
-        return { data: [] };
-    },
-    componentDidMount: function() {
-        this.loadProjectsFromServer();
-        setInterval(this.loadProjectsFromServer, this.props.pollInterval);
-    },
-    render: function() {
-        return (
-          <div className="projectBox">
-              <ProjectList data={ this.state.data } />
-          </div>
-        );
-    }
-});
-
-var ProjectList = React.createClass({
-  render: function() {
-      var projectNodes = this.props.data.map(function(project) {
-        return (
-          <ProjectTile title={project.title} key={project.id}>
-              {project.description}
-          </ProjectTile>
-        );
-      });
-      return (
-        <div className="projectList">
-            {projectNodes}
-        </div>
-      );
-  }
-});
-
-// ReactDOM.render(
-//   <ProjectBox url="/api/projects" pollInterval={10000} />,
-//   document.getElementById('content')
-// );
 
 ReactDOM.render(
     <UserBox source="api/users"/>,
