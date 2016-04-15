@@ -136,3 +136,19 @@ label {
 .smaller-text {
   font-size: 12px;
 }
+
+.description {
+  display: inline-block;
+  width: 75%;
+  margin: 5px;
+  vertical-align: top;
+}
+
+.timelineForm {
+  background: #F7F7F7;
+  padding: 15px;
+}
+
+.activity {
+  margin-bottom: 150px;
+}
