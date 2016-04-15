@@ -1,4 +1,4 @@
-
+var userId = location.search.split('id=')[1];
 
 var pictureStyle = {
   border: '1px solid gray',
@@ -18,10 +18,6 @@ var userStyle = {
   padding: '20px'
 };
 
-var inline = {
-  display: 'inline-block'
-};
-
 var alignRight = {
   width: '85%',
   display: 'inline-block',
@@ -38,9 +34,29 @@ var UserBox = React.createClass({
     contextTypes: {
         'router': React.PropTypes.func
     },
+    getInitialState () {
+        return { user: '' };
+    },
+    getUserData (id) {
+      var url = '/api/users/' + id;
+      $.ajax({
+        url: url,
+        dataType: 'json',
+        success: function (response) {
+            this.setState({ user: response.data });
+        }.bind(this),
+        error: function (xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
+    componentDidMount () {
+        this.getUserData(userId); 
+    },
     render () {
+        console.log(userId);
         console.log("Hello");
-        console.log(this.context);
+        console.log(this.props);
         /*const router = this.context.router;
         const id = router.getCurrentParams().id;*/
         return (
@@ -61,7 +77,7 @@ var UserBox = React.createClass({
 var UserPicture = React.createClass({
     render () {
         return (
-            <div className="userPicture" style={ pictureStyle } >
+            <div className="userPicture picture" style={ pictureStyle } >
             </div>
         );
     }
@@ -72,10 +88,10 @@ var UserTitle = React.createClass({
         return (
             <span className="userTitle">
                 <h2>User</h2>
-                <h3 style={inline}>Positions</h3>
+                <h3 style={{display: 'inlineBlock'}}>Positions</h3>
                 <div style={alignRight}>
-                  <button type="button">Prev</button>
-                  <button type="button">Next</button>
+                  <button type="button" className="btn" style={{'marginLeft': '5px'}}>Prev</button> 
+                  <button type="button" className="btn" style={{'marginLeft': '5px'}}>Next</button>
                 </div>
                 <hr></hr>
             </span>

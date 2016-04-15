@@ -10,6 +10,10 @@ router.get('/', function (req, res) {
 	});
 });
 
+router.get('/:id', function (req, res) {
+	console.log(req.params.id);
+});
+
 router.post('/', function (req, res) {
 	var name = req.body.name;
 	var position = req.body.position;

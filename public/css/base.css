@@ -23,7 +23,7 @@ h3 {
 }
 
 hr {
-  border-color: grey;
+  border-color: #888888;
 }
 
 input[type="text"], input[type="password"] {
@@ -112,4 +112,27 @@ label {
 .maincontainer {
   max-width: 930px;
   margin: auto;
+}
+
+.picture {
+  border: 1px solid gray;
+  background: #999999;
+  width: 160px;
+  margin: 5px;
+  vertical-align: top;
+  height: 200px;
+  display: inline-block;
+}
+
+.small-picture {
+  width: 55px;
+  height: 60px;
+}
+
+.grey-text {
+  color: #888888;
+}
+
+.smaller-text {
+  font-size: 12px;
 }
