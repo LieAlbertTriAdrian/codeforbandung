@@ -25,7 +25,7 @@ var ProjectTile = React.createClass({
           <div style={tileheader}>
           </div>
           <div style={tilebody}>
-            <h3 className="projectTitle">
+            <h3 className="projectTitle" style={{'margin-top': '15px'}}>
               {this.props.title}
             </h3>
             <span dangerouslySetInnerHTML={this.rawMarkup()} />
@@ -41,6 +41,17 @@ var CategoryForm = React.createClass({
   },
   handleCategoryChange: function(e) {
       this.setState({ category: e.target.value });
+      console.log("asdf " + e.target.value);
+      $.ajax({
+        url: '/api/projects/cat/' + e.target.value,
+        dataType: 'json',
+        success: function (response) {
+            ProjectList.setState({ data: response.data });
+        }.bind(this),
+        error: function (xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
   },
   render: function() {
       return (

@@ -1,23 +1,8 @@
-var pictureStyle = {
-  border: '1px solid gray',
-  background: '#999999',
-  width: '15%',
-  'min-width': '150px',
-  margin: '15px 5px',
-  'vertical-align': 'top',
-  height: '200px',
-  display: 'inline-block',
-};
-
 var userStyle = {
   width: '80%',
   display: 'inline-block',
   'vertical-align': 'top',
   padding: '20px'
-};
-
-var inline = {
-  display: 'inline-block'
 };
 
 var alignRight = {
@@ -57,7 +42,7 @@ var UserBox = React.createClass({
 var UserPicture = React.createClass({
     render () {
         return (
-            <div className="userPicture" style={ pictureStyle } >
+            <div className="userPicture picture" style={ pictureStyle } >
             </div>
         );
     }
@@ -68,10 +53,10 @@ var UserTitle = React.createClass({
         return (
             <span className="userTitle">
                 <h2>User</h2>
-                <h3 style={inline}>Positions</h3>
+                <h3 style={{display: 'inline-block'}}}>Positions</h3>
                 <div style={alignRight}>
-                  <button type="button">Prev</button>
-                  <button type="button">Next</button>
+                  <button type="button" className="btn" style={{'margin-left': '5px'}}>Prev</button> 
+                  <button type="button" className="btn" style={{'margin-left': '5px'}}>Next</button>
                 </div>
                 <hr></hr>
             </span>

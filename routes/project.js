@@ -24,6 +24,11 @@ router.post('/', function (req, res) {
 	});
 });
 
+router.get('/cat/:category', function(req, res) {
+	var category = req.params.category;
+	console.log("Category " + category);
+});
+
 router.put('/:id', function (req, res) {
 	var id = req.params.id;
 	var title = req.body.title;

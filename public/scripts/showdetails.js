@@ -1,21 +1,3 @@
-var pictureStyle = {
-  display: 'inline-block',
-  width: '20%',
-  background: '#999999',
-  height: '200px',
-  margin: '5px',
-  'vertical-align': 'top'
-};
-
-var smallPictureStyle = {
-  display: 'inline-block',
-  width: '50px',
-  background: '#999999',
-  height: '70px',
-  margin: '5px',
-  'vertical-align': 'top'
-};
-
 var timelineBar = {
   display: 'inline-block',
   width: '4px',
@@ -33,21 +15,6 @@ var descriptionStyle = {
   'vertical-align': 'top'
 };
 
-var dateTimeline = {
-  color: '#555555',
-  'font-size': '12px'
-};
-
-var inlineBlock = {
-  display: 'inline-block',
-  width: '48%',
-  margin: '8px'
-};
-
-var positionStyle = {
-  color: '#777777'
-};
-
 var ProjectDetails = React.createClass({
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
@@ -61,7 +28,7 @@ var ProjectDetails = React.createClass({
           <hr></hr>
         </div>
         <div>
-          <div style={pictureStyle}>
+          <div className="picture">
           </div>
           <div style={descriptionStyle}>
             <span>The description of project.</span>
@@ -73,17 +40,17 @@ var ProjectDetails = React.createClass({
           <hr></hr>
         </div>
         <div>
-          <div style={smallPictureStyle}>
+          <div className="picture small-picture">
           </div>
           <div style={descriptionStyle}>
             <h3>User 1</h3>
-            <span style={positionStyle}>Project position</span><br />
+            <span className="grey-text">Project position</span><br />
             <span>Job description of User 1.</span>
           </div>
         </div>
         <br />
         <div style={{width: '100%'}}>
-          <div style={inlineBlock}>
+          <div style={{display: 'inline-block', width: '48%', margin: '8px'}}>
             <div className="timeline">
               <h2>Timeline</h2>
               <hr></hr>
@@ -93,23 +60,23 @@ var ProjectDetails = React.createClass({
               </div>
               <div style={descriptionStyle}>
                 <h3>Activity 1</h3>
-                <span style={dateTimeline}>DD-MM-YYYY to DD-MM-YYYY</span><br />
+                <span className="smaller-text grey-text">DD-MM-YYYY to DD-MM-YYYY</span><br />
                 <span>Activity description.</span>
               </div>
             </div>
           </div>
-          <div style={inlineBlock}>
+          <div style={{display: 'inline-block', width: '48%', margin: '8px'}}>
             <div className="posts">
               <h2>Posts</h2>
               <hr></hr>
             </div>
             <div>
-              <div style={smallPictureStyle}>
+              <div className="picture small-picture">
               </div>
               <div style={descriptionStyle}>
                 <h3>Post Title</h3>
-                <span style={positionStyle}>User 1 - Project position</span><br />
-                <span style={dateTimeline}>DD-MM-YYYY HH:MM</span><br />
+                <span className="grey-text">User 1 - Project position</span><br />
+                <span className="smaller-text grey-text">DD-MM-YYYY HH:MM</span><br />
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </span>
               </div>
             </div>
