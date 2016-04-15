@@ -31,19 +31,18 @@ var borderedForm = {
 };
 
 var UserBox = React.createClass({
-    contextTypes: {
-        'router': React.PropTypes.func
-    },
     getInitialState () {
         return { user: '' };
     },
     getUserData (id) {
       var url = '/api/users/' + id;
+      console.log(url);
       $.ajax({
         url: url,
         dataType: 'json',
         success: function (response) {
-            this.setState({ user: response.data });
+            console.log("response : ", response);
+            this.setState({ user: response.data[0] });
         }.bind(this),
         error: function (xhr, status, err) {
             console.error(this.props.url, status, err.toString());
@@ -51,20 +50,22 @@ var UserBox = React.createClass({
       });
     },
     componentDidMount () {
+        console.log(userId);
         this.getUserData(userId); 
     },
     render () {
-        console.log(userId);
+        console.log("User Id : ", userId);
         console.log("Hello");
-        console.log(this.props);
+        console.log("Props : ", this.props);
+        console.log("States : ", this.state);
         /*const router = this.context.router;
         const id = router.getCurrentParams().id;*/
         return (
             <div className="userBox" >
-                  <UserPicture />
+                  <UserPicture data= { this.state.user } />
                   <div style={userStyle}>
-                    <UserTitle />
-                    <UserDetail />
+                    <UserTitle data = { this.state.user } />
+                    <UserDetail data = { this.state.user } />
                   </div>
                 {/*<UserTitle></UserTitle>
                 <UserDescription></UserDescription>
@@ -85,10 +86,11 @@ var UserPicture = React.createClass({
 
 var UserTitle = React.createClass({
     render () {
+        console.log("User Title : ", this.props);
         return (
             <span className="userTitle">
-                <h2>User</h2>
-                <h3 style={{display: 'inlineBlock'}}>Positions</h3>
+                <h2>{ this.props.data.name }</h2>
+                <h3 style={{display: 'inlineBlock'}}>{ this.props.data.position }</h3>
                 <div style={alignRight}>
                   <button type="button" className="btn" style={{'marginLeft': '5px'}}>Prev</button> 
                   <button type="button" className="btn" style={{'marginLeft': '5px'}}>Next</button>

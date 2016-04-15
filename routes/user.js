@@ -11,7 +11,11 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:id', function (req, res) {
-	console.log(req.params.id);
+	var userId = req.params.id;
+	User.readOne(userId, function (response) {
+		console.log(response);
+		res.status(response.status).json(response);
+	});
 });
 
 router.post('/', function (req, res) {
