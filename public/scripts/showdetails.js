@@ -1,3 +1,5 @@
+var projectId = location.search.split('id=')[1];
+
 var TimelineBar = {
   display: 'inline-block',
   width: '4px',
@@ -21,33 +23,41 @@ var Activity = React.createClass({
 
 var Timeline = React.createClass({
   loadTimelineFromServer: function() {
+        var data = { projectId: projectId };
         console.log("loadTimelineFromServer");
         $.ajax({
-          url: '/api/timelines',
+          url: '/api/timelines?projectId=' + projectId,
           dataType: 'json',
           success: function (response) {
               this.setState({ data: response.data });
+              console.log("response timeline: " + projectId + JSON.stringify(response.data));
           }.bind(this),
           error: function (xhr, status, err) {
               console.error(this.props.url, status, err.toString());
           }.bind(this)
         });
-        console.log(this.state.data.length);
-        document.getElementById("bar").style.height=200*this.state.data.length+'px';
+        var size = this.state.data.length;
+        document.getElementById("bar").style.height=200*size+'px';
     },
     getInitialState: function() {
         return { data: [] };
     },
     componentDidMount: function() {
         this.loadTimelineFromServer();
-        setInterval(this.loadTimelineFromServer, 2000);
+        //setInterval(this.loadTimelineFromServer, 2000);
     },
   render: function() {
-    var TimelineNodes = this.state.data.map(function(activity) {
-      return (
-        <Activity activity={activity.activity} key={activity.id} startDate={activity.startDate} endDate={activity.endDate} />
-      );
-    });
+    var TimelineNodes;
+    if (this.state.data.length <= 0) {
+      TimelineNodes = "There is no timeline activity in this project. Create one now!";
+    }
+    else {
+      TimelineNodes = this.state.data.map(function(activity) {
+        return (
+          <Activity activity={activity.activity} key={activity.id} startDate={activity.start_date} endDate={activity.end_date} />
+        );
+      });
+    }
     return (
       <div>
         <div className="timeline">
@@ -90,7 +100,7 @@ var TimelineForm = React.createClass({
           return;
       }
 
-      var TimelineAct = { activity: activity, startDate: startDate, endDate: endDate, projectId: '1' };
+      var TimelineAct = { activity: activity, startDate: startDate, endDate: endDate, projectId: projectId };
 
       this.props.onTimelineSubmit(TimelineAct);
       
@@ -125,9 +135,27 @@ var TimelineForm = React.createClass({
 });
 
 var ProjectDetails = React.createClass({
-  rawMarkup: function() {
-    var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
-    return { __html: rawMarkup };
+  getInitialState() {
+    return { project: '' };
+  },
+  getUserData (id) {
+    var url = '/api/projects/' + id;
+    console.log(url);
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      success: function (response) {
+          console.log("response : ", response);
+          this.setState({ project: response.data[0] });
+      }.bind(this),
+      error: function (xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  componentDidMount () {
+      console.log(projectId);
+      this.getUserData(projectId); 
   },
   handleTimelineSubmit: function(timelineAct) {
     //console.log(JSON.stringify(TimelineAct));
@@ -150,14 +178,14 @@ var ProjectDetails = React.createClass({
     return (
       <div className="project">
         <div className="projectTitle">
-          <h2>Title</h2>
+          <h2>{this.state.project.title}</h2>
           <hr></hr>
         </div>
         <div>
           <div className="picture">
           </div>
           <div className="description">
-            <span>The description of project.</span>
+            <span>{this.state.project.description}</span>
           </div>
         </div>
         <br />
@@ -205,6 +233,6 @@ var ProjectDetails = React.createClass({
 });
 
 ReactDOM.render(
-  <ProjectDetails />,
+  <ProjectDetails projectId={projectId}/>,
   document.getElementById('content')
 );

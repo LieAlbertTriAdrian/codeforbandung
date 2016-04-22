@@ -1,9 +1,9 @@
+<!-- views/signup.ejs -->
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Project - Code for Projects</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/base.css" />
+    <title>Project</title>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -20,26 +21,19 @@
           <a class="navbar-brand" href="/" style="margin-top: -10%;"><div style="font-size: 11px; text-align: center; width: auto;">Code for</div><div style="margin-top: -4px;">Projects</div></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
           <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       </div>
     </nav>
-    <div class="full-imagediv">
-      <div class="imagedivinside" style="background: white; border-radius: 10px; padding: 30px;">
-        <h2>Login Form</h2><br>
-        <form>
-          <label for="Email">Email</label>
-          <input type="text" name="Email" id="Email" class="form-control">
-          <label for="Password">Password</label>
-          <input type="password" name="Password" id="Password" class="form-control">
-          <br> <br>
-          <input type="submit" value="Login" class="button-white">
-        </form>
+    <div class="imagediv">
+      <div class="imagedivinside">
+        <h1 class="titleimage">Project</h1><br>
       </div>
     </div>
     <br>
-    <script type="text/babel">
+    <div id="content" class="maincontainer"></div>
+    <script type="text/babel" src="scripts/showdetails.js">
       // To get started with this tutorial running your own code, simply remove
       // the script tag loading scripts/example.js and start writing code here.
     </script>

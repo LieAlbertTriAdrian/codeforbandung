@@ -66,6 +66,7 @@ var project = require('./routes/project.js');
 var timeline = require('./routes/timeline.js');
 var user = require('./routes/user.js');
 var projectMember = require('./routes/project_member.js');
+var projectDetail = require('./routes/projectDetail.js');
 var userDetail = require('./routes/userDetail.js');
 
 app.set('port', (process.env.PORT || 3000));
@@ -112,6 +113,7 @@ app.use('/api/projectMembers', projectMember);
 // });
 
 app.use('/user', userDetail);
+app.use('/project', projectDetail);
 
 // route middleware to make sure
 function isLoggedIn(req, res, next) {

@@ -28,7 +28,6 @@ hr {
 
 input[type="text"], input[type="password"] {
   width: 100%;
-  border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
   margin: 0 0 20px 0;
@@ -37,7 +36,6 @@ input[type="text"], input[type="password"] {
 label {
   text-align: left;
   width: 100%;
-  color: white;
 }
 
 .imagediv {
