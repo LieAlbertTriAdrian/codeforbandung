@@ -47,7 +47,7 @@ var ProjectMemberBox = React.createClass({
     },
     componentDidMount: function() {
         this.loadProjectMembersFromServer();
-        //setInterval(this.loadTimelineFromServer, 2000);
+        setInterval(this.loadProjectMembersFromServer, 2000);
     },
   render: function() {
     var ProjectMemberNodes;
@@ -120,6 +120,7 @@ var ProjectMemberForm = React.createClass({
 
       var Member = { userId: name, projectId: projectId, projectPosition: position, jobDescription: description };
       console.log(Member);
+      this.setState({name: '', position: '', description: ''});
       this.props.onProjectMemberSubmit(Member);
       
   },
@@ -185,7 +186,7 @@ var Timeline = React.createClass({
     },
     componentDidMount: function() {
         this.loadTimelineFromServer();
-        //setInterval(this.loadTimelineFromServer, 2000);
+        setInterval(this.loadTimelineFromServer, 2000);
     },
   render: function() {
     var TimelineNodes;
@@ -242,7 +243,7 @@ var TimelineForm = React.createClass({
       }
 
       var TimelineAct = { activity: activity, startDate: startDate, endDate: endDate, projectId: projectId };
-
+      this.setState({ activity: '', startDate: '', endDate: '' });
       this.props.onTimelineSubmit(TimelineAct);
       
   },
@@ -326,8 +327,7 @@ var ProjectDetails = React.createClass({
         type: 'POST',
         data: timelineAct,
         success: function(activities) {
-            this.setState({activities: activities})
-            document.getElementById("bar").style.height=document.getElementById("bar").style.height+'400px';
+            
         }.bind(this),
         error: function(xhr, status, err) {
             alert("Failed to create new activity");
