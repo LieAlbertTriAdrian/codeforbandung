@@ -24,6 +24,16 @@ h3 {
 
 hr {
   border-color: #888888;
+<<<<<<< HEAD
+=======
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 0 20px 0;
+>>>>>>> origin/master
 }
 
 label {
@@ -135,16 +145,23 @@ label {
   vertical-align: top;
 }
 
+<<<<<<< HEAD
 .timelineForm, .projectMemberForm {
+=======
+.timelineForm {
+>>>>>>> origin/master
   background: #F7F7F7;
   padding: 15px;
 }
 
 .activity {
   margin-bottom: 150px;
+<<<<<<< HEAD
 }
 
 .projectMember {
   display: inline-block;
   width: 49%;
+=======
+>>>>>>> origin/master
 }
