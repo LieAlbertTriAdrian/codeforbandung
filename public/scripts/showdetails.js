@@ -10,7 +10,6 @@ var TimelineBar = {
   borderRadius: '3px'
 };
 
-<<<<<<< HEAD
 var ProjectMember = React.createClass({
   render: function() {
     return (
@@ -291,8 +290,6 @@ var ProjectPostForm = React.createClass({
   }
 });
 
-=======
->>>>>>> origin/master
 var Activity = React.createClass({
   render: function() {
     return (
@@ -309,31 +306,19 @@ var Timeline = React.createClass({
         var data = { projectId: projectId };
         console.log("loadTimelineFromServer");
         $.ajax({
-<<<<<<< HEAD
           url: '/api/timelines/' + projectId,
           dataType: 'json',
           success: function (response) {
               this.setState({ data: response.data });
               var size = this.state.data.length;
               document.getElementById("bar").style.height=200*size+'px';
-=======
-          url: '/api/timelines?projectId=' + projectId,
-          dataType: 'json',
-          success: function (response) {
-              this.setState({ data: response.data });
->>>>>>> origin/master
               console.log("response timeline: " + projectId + JSON.stringify(response.data));
           }.bind(this),
           error: function (xhr, status, err) {
               console.error(this.props.url, status, err.toString());
           }.bind(this)
         });
-<<<<<<< HEAD
         
-=======
-        var size = this.state.data.length;
-        document.getElementById("bar").style.height=200*size+'px';
->>>>>>> origin/master
     },
     getInitialState: function() {
         return { data: [] };
@@ -345,11 +330,7 @@ var Timeline = React.createClass({
   render: function() {
     var TimelineNodes;
     if (this.state.data.length <= 0) {
-<<<<<<< HEAD
       TimelineNodes = "There is no timeline activity in this project. Create one now!<br>";
-=======
-      TimelineNodes = "There is no timeline activity in this project. Create one now!";
->>>>>>> origin/master
     }
     else {
       TimelineNodes = this.state.data.map(function(activity) {
@@ -378,11 +359,7 @@ var Timeline = React.createClass({
 
 var TimelineForm = React.createClass({
   getInitialState: function() {
-<<<<<<< HEAD
       return { activity: '', startDate: '', endDate: '', projectId: projectId };
-=======
-      return { activity: '', startDate: '', endDate: '', projectId: '1' };
->>>>>>> origin/master
   },
   handleactivityChange: function(e) {
       this.setState({ activity: e.target.value });
@@ -414,17 +391,13 @@ var TimelineForm = React.createClass({
         <form className="timelineForm" onSubmit= {this.handleSubmit }>
           <input
             type="text"
-<<<<<<< HEAD
             className="form-control"
-=======
->>>>>>> origin/master
             placeholder="Activity title"
             value={ this.state.activity }
             onChange={ this.handleactivityChange }
           /> <br />
           <input
             type="text"
-<<<<<<< HEAD
             className="form-control"
             placeholder="Start time"
             value={ this.state.startDate }
@@ -439,20 +412,6 @@ var TimelineForm = React.createClass({
             onChange={ this.handleendDateChange }
             style={{width: '48%', display: 'inline-block'}}
           /> <br /> <br />
-=======
-            placeholder="Start time"
-            value={ this.state.startDate }
-            onChange={ this.handlestartDateChange }
-            style={{width: '49%', marginRight: '10px'}}
-          />
-          <input
-            type="text"
-            placeholder="End time"
-            value={ this.state.endDate }
-            onChange={ this.handleendDateChange }
-            style={{width: '48%'}}
-          /> <br />
->>>>>>> origin/master
           <input type="submit" value="Post" className="button" style={{width: '100%'}} />
         </form>
       );
@@ -463,11 +422,7 @@ var ProjectDetails = React.createClass({
   getInitialState() {
     return { project: '' };
   },
-<<<<<<< HEAD
   getProjectData (id) {
-=======
-  getUserData (id) {
->>>>>>> origin/master
     var url = '/api/projects/' + id;
     console.log(url);
     $.ajax({
@@ -484,7 +439,6 @@ var ProjectDetails = React.createClass({
   },
   componentDidMount () {
       console.log(projectId);
-<<<<<<< HEAD
       this.getProjectData(projectId); 
   },
   handleProjectMemberSubmit: function(Member) {
@@ -503,9 +457,6 @@ var ProjectDetails = React.createClass({
             console.log('/api/projectMembers', status, err.toString());
         }.bind(this)
     });
-=======
-      this.getUserData(projectId); 
->>>>>>> origin/master
   },
   handleTimelineSubmit: function(timelineAct) {
     //console.log(JSON.stringify(TimelineAct));
@@ -539,24 +490,8 @@ var ProjectDetails = React.createClass({
           </div>
         </div>
         <br />
-<<<<<<< HEAD
         <ProjectMemberBox />
         <ProjectMemberForm onProjectMemberSubmit={this.handleProjectMemberSubmit} />
-=======
-        <div className="projectMembers">
-          <h2>Project Members</h2>
-          <hr></hr>
-        </div>
-        <div>
-          <div className="picture small-picture">
-          </div>
-          <div className="description">
-            <h3>User 1</h3>
-            <span className="grey-text">Project position</span><br />
-            <span>Job description of User 1.</span>
-          </div>
-        </div>
->>>>>>> origin/master
         <br />
         <div style={{width: '100%'}}>
           <div style={{display: 'inline-block', verticalAlign: 'top', width: '48%', margin: '8px'}}>
