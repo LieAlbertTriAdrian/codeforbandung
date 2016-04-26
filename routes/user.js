@@ -10,6 +10,14 @@ router.get('/', function (req, res) {
 	});
 });
 
+router.get('/:id', function (req, res) {
+	var userId = req.params.id;
+	User.readOne(userId, function (response) {
+		console.log(response);
+		res.status(response.status).json(response);
+	});
+});
+
 router.post('/', function (req, res) {
 	var name = req.body.name;
 	var position = req.body.position;

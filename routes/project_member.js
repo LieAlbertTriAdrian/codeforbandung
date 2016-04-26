@@ -3,8 +3,9 @@ var router = express.Router();
 var Promise = require('bluebird');
 var ProjectMember = require('../models/ProjectMember.js');
 
-router.get('/', function (req, res) {
-	ProjectMember.read(function (response) {
+router.get('/:projectId', function (req, res) {
+	var id = req.params.projectId;
+	ProjectMember.readOne(id, function (response) {
 		console.log("After Query");
 		res.status(response.status).json(response);
 	});

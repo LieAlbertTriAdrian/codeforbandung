@@ -1,3 +1,4 @@
+<!-- views/signup.ejs -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,13 +12,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="/css/base.css" />
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#" style="margin-top: -10%;"><div style="font-size: 11px; text-align: center; width: auto;">Code for</div><div style="margin-top: -4px;">Projects</div></a>
+          <a class="navbar-brand" href="/" style="margin-top: -10%;"><div style="font-size: 11px; text-align: center; width: auto;">Code for</div><div style="margin-top: -4px;">Projects</div></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Register</a></li>
@@ -27,13 +28,12 @@
     </nav>
     <div class="imagediv">
       <div class="imagedivinside">
-        <h1 class="titleimage">Project</h1><br>
-        <a href="/createProject.html" class="button">Create Project</a>
+        <h1 class="titleimage">User Detail</h1><br>
       </div>
     </div>
     <br>
     <div id="content" class="maincontainer"></div>
-    <script type="text/babel" src="scripts/main.js">
+    <script type="text/babel" src="/scripts/components/UserBox.jsx">
       // To get started with this tutorial running your own code, simply remove
       // the script tag loading scripts/example.js and start writing code here.
     </script>

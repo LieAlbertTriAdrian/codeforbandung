@@ -3,8 +3,9 @@ var router = express.Router();
 var Promise = require('bluebird');
 var Timeline = require('../models/Timeline.js');
 
-router.get('/', function (req, res) {
-	Timeline.read(function (response) {
+router.get('/:projectId', function (req, res) {
+	var id = req.params.projectId;
+	Timeline.readOne(id, function (response) {
 		console.log("After Query");
 		res.status(response.status).json(response);
 	});

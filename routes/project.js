@@ -11,6 +11,14 @@ router.get('/', function (req, res) {
 	});
 });
 
+router.get('/:id', function (req, res) {
+	var projectId = req.params.id;
+	Project.readOne(projectId, function (response) {
+		console.log(response);
+		res.status(response.status).json(response);
+	});
+});
+
 router.post('/', function (req, res) {
 	var title = req.body.title;
 	var description = req.body.description;
@@ -22,6 +30,11 @@ router.post('/', function (req, res) {
 		console.log("After Query");
 		res.status(response.status).json(response);
 	});
+});
+
+router.get('/cat/:category', function(req, res) {
+	var category = req.params.category;
+	console.log("Category " + category);
 });
 
 router.put('/:id', function (req, res) {
