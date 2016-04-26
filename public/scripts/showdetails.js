@@ -190,7 +190,7 @@ var Timeline = React.createClass({
   render: function() {
     var TimelineNodes;
     if (this.state.data.length <= 0) {
-      TimelineNodes = "There is no timeline activity in this project. Create one now!<br>";
+      TimelineNodes = "There is no timeline activity in this project. Create one now!";
     }
     else {
       TimelineNodes = this.state.data.map(function(activity) {
