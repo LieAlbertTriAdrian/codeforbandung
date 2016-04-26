@@ -66,6 +66,8 @@ var project = require('./routes/project.js');
 var timeline = require('./routes/timeline.js');
 var user = require('./routes/user.js');
 var projectMember = require('./routes/project_member.js');
+var projectDetail = require('./routes/projectDetail.js');
+var userDetail = require('./routes/userDetail.js');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -104,11 +106,14 @@ app.use('/api/projects', project);
 app.use('/api/timelines', timeline);
 app.use('/api/users', user);
 app.use('/api/projectMembers', projectMember);
-app.use('/', isLoggedIn, function (req, res) {
-	//user : req.user
-	//Get the user out of session and pass it to the template
-	console.log("Middleware for home");
-});
+// app.use('/', isLoggedIn, function (req, res) {
+// 	//user : req.user
+// 	//Get the user out of session and pass it to the template
+// 	console.log("Middleware for home");
+// });
+
+app.use('/user', userDetail);
+app.use('/project', projectDetail);
 
 // route middleware to make sure
 function isLoggedIn(req, res, next) {
@@ -120,6 +125,7 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to the home page
 	res.redirect('/');
 }
+
 
 
 app.listen(app.get('port'), function() {

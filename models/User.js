@@ -26,6 +26,24 @@ controller.read = function (callback) {
 	});
 };
 
+controller.readOne = function (id, callback) {
+  conn.getConnection(function (err, conn) {
+      if (err) {
+        conn.release();
+        callback(Response(err.errno, err.message));
+      }
+
+      conn.query('SELECT * FROM users WHERE id = ?', id, function (err, rows) {
+          conn.release();
+          if (err)
+              callback(Response(err.errno, err.message));
+          else
+              callback(Response(Const.STATUS_OK,'',rows));
+          console.log("Rows : ", rows);
+      });
+  });
+};
+
 controller.create = function (data, callback) {
   conn.getConnection(function (err, conn) {
       if (err) {

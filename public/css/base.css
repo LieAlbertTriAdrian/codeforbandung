@@ -17,18 +17,18 @@ h1 {
   font-size: 60px;
 }
 
-input[type="text"], input[type="password"] {
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 0 0 20px 0;
+h3 {
+  margin-top: 0px;
+  margin-bottom: 3px;
+}
+
+hr {
+  border-color: #888888;
 }
 
 label {
   text-align: left;
   width: 100%;
-  color: white;
 }
 
 .imagediv {
@@ -103,4 +103,48 @@ label {
 .maincontainer {
   max-width: 930px;
   margin: auto;
+}
+
+.picture {
+  border: 1px solid gray;
+  background: #999999;
+  width: 160px;
+  margin: 5px;
+  vertical-align: top;
+  height: 200px;
+  display: inline-block;
+}
+
+.small-picture {
+  width: 55px;
+  height: 60px;
+}
+
+.grey-text {
+  color: #888888;
+}
+
+.smaller-text {
+  font-size: 12px;
+}
+
+.description {
+  display: inline-block;
+  width: 75%;
+  margin: 5px;
+  vertical-align: top;
+}
+
+.timelineForm, .projectMemberForm {
+  background: #F7F7F7;
+  padding: 15px;
+}
+
+.activity {
+  margin-bottom: 150px;
+}
+
+.projectMember {
+  display: inline-block;
+  width: 49%;
 }
